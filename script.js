@@ -221,3 +221,24 @@ function supprimerLigneCad(id) {
 
 document.getElementById('btnAddLigne').addEventListener('click', ajouterLigne);
 document.getElementById('btnAddLigneCad').addEventListener('click', ajouterLigneCad);
+function fraisGarantieGlobale(lignesGarantie) {
+  const montantTotal = lignesGarantie.reduce((acc, l) => acc + l.montant * l.nombre, 0);
+  const nbTotal = lignesGarantie.reduce((acc, l) => acc + l.nombre, 0);
+  if (montantTotal === 0) return { frais: 0, detail: '' };
+
+  if (nbTotal === 1 && montantTotal <= 2_000_000) {
+    // Cas 1 garantie ≤ 2M : frais fixes
+    return {
+      frais: 93800,
+      detail: `Garantie de soumission unique ≤ 2 000 000 FCFA\nNombre de garantie : 1\nFrais fixes : 93 800 FCFA`
+    };
+  } 
+  // Pour plusieurs garanties OU garantie unique > 2M, appliquer la formule globale
+  const barème = fraisBarème(montantTotal);
+  const frais = ((montantTotal * 0.03 / 4) * 1.1 * 2) + barème + (30000 * nbTotal);
+  return {
+    frais,
+    detail: `Somme des garanties de soumission : ${montantTotal.toLocaleString()} FCFA\nNombre total de garanties : ${nbTotal}\nFrais Barème : ${barème.toLocaleString()} FCFA\nFormule appliquée : ((Montant total × 3%) ÷ 4) × 1.1 × 2 + Frais Barème + 30 000 × ${nbTotal}\nFrais total : ${frais.toLocaleString()} FCFA`
+  };
+}
+
