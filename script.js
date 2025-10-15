@@ -87,15 +87,15 @@ function afficherTable() {
   const tbody = document.getElementById('tableBody');
   tbody.innerHTML = '';
   lignes.forEach(ligne => {
-    const tr = document.createElement('tr');
-    const typeLib = ligne.type === 'capacite' ? 'Capacité financière' : 'Garantie de soumission';
+    const typeAbbr = ligne.type === 'capacite' ? 'CF' : 'GS';
     const frais = ligne.type === 'capacite' ? fraisCapacite(ligne.montant) : '-';
+    const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${typeLib}</td>
-      <td>${ligne.montant.toLocaleString()}</td>
-      <td>${ligne.nombre}</td>
-      <td>${ligne.type === 'capacite' ? frais.toLocaleString() : '-'}</td>
-      <td><button aria-label="Supprimer ligne" class="btn-suppr" data-id="${ligne.id}">✕</button></td>
+      <td data-label="Type">${typeAbbr}</td>
+      <td data-label="Montant">${ligne.montant.toLocaleString()}</td>
+      <td data-label="Nombre">${ligne.nombre}</td>
+      <td data-label="Frais">${ligne.type === 'capacite' ? frais.toLocaleString() : '-'}</td>
+      <td data-label="Supprimer"><button aria-label="Supprimer ligne" class="btn-suppr" data-id="${ligne.id}">✕</button></td>
     `;
     tbody.appendChild(tr);
   });
@@ -107,6 +107,7 @@ function afficherTable() {
     btn.onclick = () => supprimerLigne(Number(btn.getAttribute('data-id')));
   });
 }
+
 
 function ajouterLigneCad() {
   const type = document.getElementById('typeInputCad').value;
