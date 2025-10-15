@@ -1,0 +1,326 @@
+:root {
+  --vert-principal: #005a2b;
+  --vert-secondaire: #2fa54f;
+  --blanc: #ffffff;
+  --gris-texte: #212121;
+  --gris-fond: #f7f9f7;
+  --vert-clair: #a8d5a3;
+  --vert-halo: #2fa54f88;
+  --rouge-erreur: #c62828;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--gris-fond);
+  color: var(--gris-texte);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: var(--vert-principal);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 960px;
+  width: 100%;
+  justify-content: center;
+}
+
+.section {
+  background-color: var(--blanc);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 90, 43, 0.15);
+  padding: 1.5rem 2rem;
+  flex: 1 1 420px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  color: var(--vert-principal);
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+input[type=number],
+select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--vert-secondaire);
+  transition: border-color 0.3s ease;
+}
+
+input[type=number]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--vert-principal);
+  box-shadow: 0 0 7px var(--vert-halo);
+}
+
+button {
+  margin-top: 1.8rem;
+  padding: 0.75rem;
+  background-color: var(--vert-principal);
+  border: none;
+  border-radius: 12px;
+  color: var(--blanc);
+  font-weight: 800;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px -4px var(--vert-secondaire);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--vert-secondaire);
+}
+
+.error {
+  margin-top: 0.5rem;
+  min-height: 24px;
+  font-weight: 700;
+  color: var(--rouge-erreur);
+  user-select: none;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1.5px solid var(--vert-secondaire);
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+th {
+  background-color: var(--vert-secondaire);
+  color: var(--blanc);
+  font-weight: 700;
+}
+
+tbody tr:hover {
+  background-color: #d9f2d8;
+  cursor: pointer;
+}
+
+tfoot tr {
+  font-weight: 900;
+  background-color: var(--vert-clair);
+  color: var(--vert-principal);
+}
+
+#detailsArea {
+  background-color: #eaf5ea;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: inset 0 0 8px var(--vert-halo);
+  white-space: pre-wrap;
+  max-height: 320px;
+  overflow-y: auto;
+  font-family: monospace;
+  color: var(--vert-principal);
+  margin-top: 1.5rem;
+  min-height: 220px;
+}
+
+#rulesSection {
+  background-color: var(--blanc);
+  max-width: 960px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 90, 43, 0.15);
+  padding: 1.8rem 2.4rem;
+  margin-top: 3rem;
+  color: var(--vert-principal);
+  font-size: 1rem;
+}
+
+#rulesSection h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#rulesTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#rulesTable th,
+#rulesTable td {
+  border: 1.5px solid var(--vert-secondaire);
+  padding: 0.9rem 1.1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#rulesTable th {
+  background-color: var(--vert-principal);
+  color: var(--blanc);
+  font-weight: 900;
+}
+
+@media (max-width: 860px) {
+  .container {
+    flex-direction: column;
+  }
+}
+.container {
+  max-width: 1080px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ... autres règles inchangées ... */
+
+.table-container table {
+  width: 100% !important;
+  max-width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+section[aria-label="Détails des calculs"] {
+  margin-top: 3.5rem;
+}
+.table-container table {
+  width: auto !important; /* largeur automatique selon contenu */
+  max-width: 100%;        /* pas plus large que le conteneur */
+  border-collapse: collapse;
+  table-layout: auto;     /* colonnes s’adaptent au contenu */
+}
+
+.table-container th,
+.table-container td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.6rem 1rem;
+  max-width: 200px; /* largeur max raisonnable pour éviter cellules trop larges */
+}
+
+tbody tr:hover {
+  background-color: #d9f2d8;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .table-container table, .table-container thead, .table-container tbody, .table-container th, .table-container td, .table-container tr {
+    display: block;
+  }
+  .table-container thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  .table-container tr {
+    border: 1px solid var(--vert-secondaire);
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  .table-container td {
+    border: none;
+    border-bottom: 1px solid var(--vert-clair);
+    position: relative;
+    padding-left: 50%;
+    white-space: nowrap;
+  }
+  .table-container td:last-child {
+    border-bottom: 0;
+  }
+  .table-container td:before {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-weight: 700;
+    color: var(--vert-principal);
+    content: attr(data-label);
+  }
+}
+footer {
+  background-color: var(--vert-principal);
+  color: var(--blanc);
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  box-shadow: inset 0 6px 10px -6px #2fa54faa;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.footer-info p,
+.footer-links a {
+  margin: 0.25rem 0;
+}
+
+.footer-info a,
+.footer-links a {
+  color: var(--vert-clair);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover,
+.footer-links a:hover {
+  color: var(--blanc);
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+}
