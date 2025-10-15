@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcul de frais</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <h1>Calcul des frais de dossiers</h1>
+
+  <main class="container">
+
+    <section class="section" aria-labelledby="form-title-primary">
+      <h2 id="form-title-primary">Saisie des garanties et capacités</h2>
+      <form id="inputForm" novalidate>
+        <label for="typeInput">Type d'élément :</label>
+        <select id="typeInput" required aria-required="true">
+          <option value="">-- Choisir --</option>
+          <option value="capacite">Capacité financière</option>
+          <option value="garantiesoumission">Garantie de soumission</option>
+        </select>
+
+        <label for="montantInput">Montant (FCFA) :</label>
+        <input type="number" id="montantInput" min="0" step="100" required aria-required="true" />
+
+        <label for="nombreInput">Nombre :</label>
+        <input type="number" id="nombreInput" min="1" value="1" required aria-required="true" />
+
+        <button type="submit" id="addLineBtn">Ajouter</button>
+        <div id="errorInput" class="error" role="alert"></div>
+      </form>
+<div class="table-container">
+      <table aria-label="Liste des garanties et capacités">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Montant</th>
+            <th>Nombre</th>
+            <th>Frais</th>
+            <th>Supprimer</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot>
+          <tr>
+            <th colspan="3">Total(Capacité + Garantie)</th>
+            <th id="totalFees">0</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+</div>
+    </section>
+
+    <section class="section" aria-labelledby="form-title-cad">
+      <h2 id="form-title-cad">Saisie des CAD / CBE / CRG</h2>
+      <form id="inputFormCad" novalidate>
+        <label for="typeInputCad">Type :</label>
+        <select id="typeInputCad" required aria-required="true">
+          <option value="">-- Choisir --</option>
+          <option value="cad">CAD</option>
+          <option value="cbe">CBE</option>
+          <option value="crg">CRG</option>
+        </select>
+
+        <label for="montantInputCad">Montant</label>
+        <input type="number" id="montantInputCad" min="0" step="100" required aria-required="true" />
+
+        <label for="nombreInputCad">Nombre</label>
+        <input type="number" id="nombreInputCad" min="1" value="1" required aria-required="true" />
+
+        <button type="submit" id="addLineCadBtn">Ajouter</button>
+        <div id="errorInputCad" class="error" role="alert"></div>
+      </form>
+<div class="table-container">
+      <table aria-label="Liste des CAD / CBE / CRG">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Montant</th>
+            <th>Nombre</th>
+            <th>Frais</th>
+            <th>Supprimer</th>
+          </tr>
+        </thead>
+        <tbody id="tableBodyCad"></tbody>
+        <tfoot>
+          <tr>
+            <th colspan="3">Total CAD / CBE / CRG</th>
+            <th id="totalFeesCad">0</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+</div>
+    </section>
+
+  </main>
+
+  <section class="section" aria-label="Détails des calculs">
+    <h2>Détails complets des calculs</h2>
+    <pre id="detailsArea" tabindex="0" aria-live="polite" aria-atomic="true">Aucun calcul effectué.</pre>
+  </section>
+
+  <section id="rulesSection" class="section" aria-label="Règles de calcul officielles">
+    <h2>Règles de calcul</h2>
+    <table id="rulesTable" aria-label="Règles officielles de calcul des frais">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Montant déclaré</th>
+          <th>Frais appliqués</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Capacité financière</td>
+          <td>Sans montant</td>
+          <td>27 500 FCFA</td>
+        </tr>
+        <tr>
+          <td>Capacité financière</td>
+          <td>De 0 à moins de 10 millions</td>
+          <td>33 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>Capacité financière</td>
+          <td>De 10 à moins de 50 millions</td>
+          <td>55 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>Capacité financière</td>
+          <td>De 50 à moins de 200 millions</td>
+          <td>110 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>Capacité financière</td>
+          <td>200 millions et plus</td>
+          <td>275 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>Garantie de soumission</td>
+          <td>Montant ≤ 2 millions</td>
+          <td>Frais fixes de 93 800 FCFA par garantie</td>
+        </tr>
+        <tr>
+          <td>Garantie de soumission</td>
+          <td>Montant > 2 millions</td>
+          <td>
+            Frais = ((Montant total × 3%) ÷ 4) × 1.1 × 2 + Frais du Barème + 30 000 × Nombre total<br />
+            <small>(Frais du Barème selon somme totale des garanties :<br />
+              &nbsp;&nbsp;- de 0 à moins de 10 millions : 27 500 FCFA<br />
+              &nbsp;&nbsp;- de 10 à moins de 50 millions : 37 500 FCFA<br />
+              &nbsp;&nbsp;- dépasse 50 millions : 55 000 FCFA)</small>
+          </td>
+        </tr>
+        <tr>
+          <td>CAD, CBE, CRG</td>
+          <td>Montant ≤ 2 millions</td>
+          <td>93 800 FCFA par élément</td>
+        </tr>
+        <tr>
+          <td>CAD, CBE, CRG</td>
+          <td>Montant > 2 millions</td>
+          <td>
+            Frais = ((Montant × 3%) ÷ 4) × 1.1 × 2 + Frais Barème + 30 000 × Nombre<br />
+            <small>(Même barème que pour garanties)</small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>© 2025 ODA: Olm Design Agency. Tous droits réservés.</p>
+      <p>Adresse : <a href="https://goo.gl/maps/Lomé-Togo" target="_blank" rel="noopener">Agoè Logopé, Lomé-Togo</a></p>
+      <p>Téléphone : +228 93 90 78 38</p>
+      <p>Email : <a href="mailto:contact@orabanktogo.tg">olm.design.agency@gmail.com</a></p>
+    </div>
+    <div class="footer-links">
+      <a href="https://olmedo-ux.github.io/folio/" target="_blank" rel="noopener">Notre portfolio</a>
+      <a href="https://wa.me/22893907838" target="_blank" rel="noopener">Contactez-nous</a>
+      <a href="https://wa.me/22879859416" target="_blank" rel="noopener">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
