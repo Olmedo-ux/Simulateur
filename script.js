@@ -271,3 +271,29 @@ tr.innerHTML = `
   <td data-label="Frais calculés">${ligne.type === 'capacite' ? frais.toLocaleString() : '-'}</td>
   <td data-label="Supprimer"><button aria-label="Supprimer ligne" class="btn-suppr" data-id="${ligne.id}">✕</button></td>
 `;
+
+const CACHE_NAME = 'orabank-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/css/styles.css',
+  '/js/app.js',
+  // ajoutez ici d'autres fichiers (images, polices...) si besoin
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      // Retourne la ressource mise en cache ou fait la requête réseau
+      return response || fetch(event.request);
+    })
+  );
+});
