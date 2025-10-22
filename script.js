@@ -9,10 +9,10 @@ function fraisBarème(montantTotal) {
 
 function fraisCapacite(montant) {
   if (montant === 0) return 27500;
-  if (montant > 0 && montant < 10_000_000) return 33000;
-  if (montant >= 10_000_000 && montant < 50_000_000) return 55000;
-  if (montant >= 50_000_000 && montant < 200_000_000) return 110000;
-  if (montant >= 200_000_000) return 275000;
+  if (montant > 0 && montant < 10_000_001) return 33000;
+  if (montant >= 10_000_001 && montant < 50_000_001) return 55000;
+  if (montant >= 50_000_001 && montant < 200_000_001) return 110000;
+  if (montant >= 200_000_001) return 275000;
   return 0;
 }
 
