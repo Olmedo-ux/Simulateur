@@ -2,8 +2,8 @@ let lignes = [];
 let lignesCad = [];
 
 function fraisBarème(montantTotal) {
-  if (montantTotal < 10_000_000) return 27500;
-  if (montantTotal < 50_000_000) return 37500;
+  if (montantTotal < 10_000_001) return 27500;
+  if (montantTotal < 50_000_001) return 37500;
   return 55000;
 }
 
