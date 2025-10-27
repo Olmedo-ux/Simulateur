@@ -108,70 +108,67 @@
   <section id="rulesSection" class="section" aria-label="Règles de calcul officielles">
     <h2>Règles de calcul</h2>
     <table id="rulesTable" aria-label="Règles officielles de calcul des frais">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Montant déclaré</th>
-          <th>Frais appliqués</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Capacité financière</td>
-          <td>Sans montant</td>
-          <td>27 500 FCFA</td>
-        </tr>
-        <tr>
-          <td>Capacité financière</td>
-          <td>De 0 à 10 millions</td>
-          <td>33 000 FCFA</td>
-        </tr>
-        <tr>
-          <td>Capacité financière</td>
-          <td>De 10 à 50 millions</td>
-          <td>55 000 FCFA</td>
-        </tr>
-        <tr>
-          <td>Capacité financière</td>
-          <td>De 50 à 200 millions</td>
-          <td>110 000 FCFA</td>
-        </tr>
-        <tr>
-          <td>Capacité financière</td>
-          <td>Plus de 200 millions</td>
-          <td>275 000 FCFA</td>
-        </tr>
-        <tr>
-          <td>Garantie de soumission</td>
-          <td>Montant ≤ 2 millions</td>
-          <td>Frais fixes de 93 800 FCFA par garantie</td>
-        </tr>
-        <tr>
-          <td>Garantie de soumission</td>
-          <td>Montant > 2 millions</td>
-          <td>
-            Frais = ((Montant total × 3%) ÷ 4) × 1.1 × 2 + Frais du Barème + 30 000 × Nombre total<br />
-            <small>(Frais du Barème selon somme totale des garanties :<br />
-              &nbsp;&nbsp;- de 0 à 10 M : 27 500 FCFA<br />
-              &nbsp;&nbsp;- de 10 M 1 à 50 M : 37 500 FCFA<br />
-              &nbsp;&nbsp;- dépasse 50 millions : 55 000 FCFA)</small>
-          </td>
-        </tr>
-        <tr>
-          <td>CAD, CBE, CRG</td>
-          <td>Montant ≤ 2 millions</td>
-          <td>93 800 FCFA par élément</td>
-        </tr>
-        <tr>
-          <td>CAD, CBE, CRG</td>
-          <td>Montant > 2 millions</td>
-          <td>
-            Frais = ((Montant × 3%) ÷ 4) × 1.1 × 2 + Frais Barème + 30 000 × Nombre<br />
-            <small>(Même barème que pour garanties)</small>
-          </td>
-        </tr>
-      </tbody>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Montant déclaré</th>
+      <th>Frais appliqués</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Capacités financières -->
+    <tr>
+      <td>Capacité financière</td>
+      <td>Sans montant</td>
+      <td>27 500 FCFA</td>
+    </tr>
+    <tr>
+      <td>Capacité financière</td>
+      <td>De 0 à 10 millions (inclus)</td>
+      <td>33 000 FCFA</td>
+    </tr>
+    <tr>
+      <td>Capacité financière</td>
+      <td>+]10 à 50 millions (inclus)</td>
+      <td>55 000 FCFA</td>
+    </tr>
+    <tr>
+      <td>Capacité financière</td>
+      <td>+]50 à 200 millions (inclus)</td>
+      <td>110 000 FCFA</td>
+    </tr>
+    <tr>
+      <td>Capacité financière</td>
+      <td>Supérieur à 200 millions</td>
+      <td>275 000 FCFA</td>
+    </tr>
+
+    <!-- Garanties de soumission -->
+    <tr>
+      <td>Garantie de soumission</td>
+      <td>Montant ≤ 10 millions</td>
+      <td>27 500 FCFA</td>
+    </tr>
+    <tr>
+      <td>Garantie de soumission</td>
+      <td>Montant > 10 millions et ≤ 50 millions</td>
+      <td>37 500 FCFA</td>
+    </tr>
+    <tr>
+      <td>Garantie de soumission</td>
+      <td>Montant > 50 millions</td>
+      <td>55 000 FCFA</td>
+    </tr>
+
+    <!-- CAD, CBE, CRG -->
+    <tr>
+      <td>CAD, CBE, CRG</td>
+      <td>Montant</td>
+      <td>Frais Barème : 0,25% du montant</td>
+    </tr>
+  </tbody>
     </table>
+    
   </section>
 <footer>
   <div class="footer-container">
